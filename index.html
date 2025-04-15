@@ -1,31 +1,232 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>LA TV Shows | Home</title>
-    <meta name="description" content="A Catalog of Shows Set in Los Angeles" />
+    <title>Gods and Origins</title>
+    <meta name="description" content="Catalog of Ancient Gods" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/a798909a18.js"
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript" src="data.js"></script>
     <script type="text/javascript" src="scripts.js"></script>
   </head>
 
   <body>
-    <header class="main-header">
-      <h1 class="title">LA TV Shows</h1>
-    </header>
-    <div id="card-container"></div>
-    <div class="card" style="display: none">
-      <div class="card-content">
-        <h2>TV Show Title</h2>
-        <img src="" alt="TV Show Poster" />
-        <ul>
-          <li>Bullet Point 1</li>
-          <li>Bullet Point 2</li>
-          <li>Bullet Point 3</li>
-        </ul>
+    <div id="container">
+      <header class="header">
+        <div class="header-left">
+          <h1 class="header-title">Gods and Origins</h1>
+        </div>
+        <div class="header-right">
+          <div class="search-container">
+            <input type="text" class="search-input" id="search-input" />
+            <i
+              class="fa-solid fa-magnifying-glass search-icon"
+              onclick="searchGods(); scrollToGods();"
+            ></i>
+          </div>
+          <div class="favorite-icon">
+            <i
+              class="fa-regular fa-star star-icon"
+              onclick="openFavoritesModal()"
+            ></i>
+          </div>
+        </div>
+      </header>
+
+      <div class="hero-section">
+        <p class="hero-section-text">
+          Explore gods and myths from ancient cultures around the world 🗿
+        </p>
+        <button class="hero-button" onclick="scrollToGods();">Explore</button>
+      </div>
+
+      <div class="pantheon-selector">
+        <div class="pantheon-selector-inner">
+          <div class="pantheon-selector-title-container">
+            <p class="pantheon-selector-title">Pantheons</p>
+          </div>
+
+          <div class="pantheons-container">
+            <div class="pantheon-card" onclick="loadGods(greek_gods_data);">
+              <div class="pantheon-card-inner">
+                <p class="pantheon-card-text">Greek</p>
+                <img
+                  src="assets/pantheons/Greek.png"
+                  alt="Greek Pantheon"
+                  class="pantheon-image"
+                />
+              </div>
+            </div>
+
+            <div class="pantheon-card" onclick="loadGods(roman_gods_data);">
+              <div class="pantheon-card-inner">
+                <p class="pantheon-card-text">Roman</p>
+                <img
+                  src="assets/pantheons/Roman.png"
+                  alt="Roman Pantheon"
+                  class="pantheon-image"
+                />
+              </div>
+            </div>
+
+            <div class="pantheon-card" onclick="loadGods(norse_gods_data);">
+              <div class="pantheon-card-inner">
+                <p class="pantheon-card-text">Norse</p>
+                <img
+                  src="assets/pantheons/Norse.png"
+                  alt="Norse Pantheon"
+                  class="pantheon-image"
+                />
+              </div>
+            </div>
+
+            <div class="pantheon-card" onclick="loadGods(egyptian_gods_data);">
+              <div class="pantheon-card-inner">
+                <p class="pantheon-card-text">Egyptian</p>
+                <img
+                  src="assets/pantheons/Egyptian.png"
+                  alt="Egyptian Pantheon"
+                  class="pantheon-image"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="god-selector" id="god-selector">
+        <div class="god-selector-inner">
+          <div class="god-selector-title-container">
+            <p class="god-selector-title">Gods</p>
+            <div class="sort-controls">
+              <button class="sort-button" onclick="sortGods('az')">A-Z</button>
+              <button class="sort-button" onclick="sortGods('za')">Z-A</button>
+              <button class="sort-button" onclick="sortGods('default')">
+                Default
+              </button>
+            </div>
+          </div>
+          <div class="gods-container" id="gods-container"></div>
+        </div>
       </div>
     </div>
+
+    <div class="pantheon-builder-section">
+      <div class="pantheon-selector-title-container">
+        <p class="pantheon-selector-title">Build your pantheon</p>
+      </div>
+      <p class="pantheon-status" id="pantheon-status">
+        You haven't created a pantheon yet.
+      </p>
+
+      <button
+        class="hero-button"
+        id="edit-pantheon-btn"
+        onclick="openPantheonModal()"
+      >
+        Edit
+      </button>
+
+      <div class="pantheon-display-section" id="pantheon-display-section"></div>
+    </div>
+
+    <div id="pantheon-modal" class="modal">
+      <div class="modal-content">
+        <i
+          class="fa-solid fa-xmark close-modal"
+          onclick="closePantheonModal()"
+        ></i>
+        <div class="modal-header">
+          <h2>Build your Pantheon</h2>
+        </div>
+        <div class="modal-body pantheon-modal-body">
+          <div class="pantheon-name-container">
+            <input
+              type="text"
+              id="pantheon-name-input"
+              class="search-input"
+              placeholder="name of pantheon"
+            />
+          </div>
+
+          <p class="god-selector-title">Choose up to 10 Gods</p>
+
+          <div
+            class="pantheon-selection-container"
+            id="pantheon-selection-container"
+          ></div>
+
+          <button class="hero-button" onclick="savePantheon()">Save</button>
+        </div>
+      </div>
+    </div>
+
     <div class="footer">
-      <button onclick="quoteAlert();">Get A Quote!</button>
-      <button onclick="removeLastCard();">Remove A Card!</button>
+      <p class="footer-text">
+        Hi, I'm Vahan 👋 I created this website out of my passion for ancient
+        mythology for the Snap Academy 2025 project assessment. It highlights
+        gods from Greek, Egyptian, Norse, and Roman cultures, letting you
+        explore and learn about them in a simple way.
+      </p>
+    </div>
+
+    <div id="god-modal" class="modal">
+      <div class="modal-content">
+        <i class="fa-solid fa-xmark close-modal"></i>
+        <div class="modal-header">
+          <h2 id="modal-god-name"></h2>
+          <i
+            class="fa-regular fa-star star-modal"
+            onclick="toggleStar(this)"
+          ></i>
+        </div>
+        <div class="modal-body">
+          <div class="modal-image-container">
+            <img id="modal-god-image" src="" alt="" />
+          </div>
+          <div class="modal-details">
+            <p><strong>Domain:</strong> <span id="modal-god-domain"></span></p>
+            <p>
+              <strong>Related Gods:</strong>
+              <span id="modal-god-related"></span>
+            </p>
+            <p>
+              <strong>Description:</strong>
+              <span id="modal-god-description"></span>
+            </p>
+            <p>
+              <strong>Fun Fact:</strong> <span id="modal-god-fun-fact"></span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="favorites-modal" class="modal">
+      <div class="modal-content favorites-modal-content">
+        <div class="modal-header favorites-modal-header">
+          <h2 class="favorites-modal-title">Favorites</h2>
+          <i
+            class="fa-solid fa-xmark close-modal"
+            onclick="closeFavoritesModal()"
+          ></i>
+        </div>
+        <div class="modal-body favorites-modal-body">
+          <div
+            class="gods-container favorites-container"
+            id="favorites-container"
+          ></div>
+        </div>
+      </div>
     </div>
   </body>
 </html>

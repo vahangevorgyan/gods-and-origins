@@ -4,67 +4,594 @@ body {
   padding: 0;
 }
 
-.main-header {
-  background-color: rgba(0, 0, 0, 0.3);
-  padding-bottom: 10px;
+* {
+  font-family: "Cinzel", serif;
+  outline: none;
+  -webkit-tap-highlight-color: transparent !important;
 }
 
-.title {
-  text-align: center;
-  margin: 0;
-  font-size: 8em;
-  font-family: "Helvetica";
-  font-weight: normal;
-  color: white;
-}
-
-#card-container {
+body {
+  background: linear-gradient(to right, #1b1612 0%, #35221f 50%, #1b1612 100%);
   display: flex;
-  justify-content: center;
-  margin: 20px;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
 }
 
-.card {
-  width: 300px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin: 5px;
+#container {
+  flex: 1;
 }
 
-.card-content {
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   padding: 20px;
-  font-family: "Verdana";
-  color: #777;
+  border-bottom: 1px solid #fde19b;
+  color: #fde19b;
+  background: rgba(255, 255, 255, 0.1);
 }
 
-.card-content h2 {
-  margin-top: 0;
+.header-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+
+.header-title {
+  font-size: 24px;
+  margin: 0;
+}
+
+.search-container {
+  border: 1px solid #fde19b;
+  border-radius: 25px;
+  padding: 5px 10px;
+  padding-left: 15px;
+}
+
+.search-input {
+  font-size: 15px;
+  background: transparent;
+  color: #fde19b;
+  font-family: "Raleway", sans-serif;
+  border: none;
+}
+
+.search-icon {
   font-size: 20px;
+  color: #fde19b;
+  cursor: pointer;
 }
 
-.card img {
+.star-icon {
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.star-modal {
+  font-size: 30px;
+  cursor: pointer;
+  transition: 0.15s;
+}
+
+.star-modal:hover {
+  transform: scale(1.1);
+}
+
+.favorite-icon {
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.favorite-icon:hover {
+  transform: scale(1.1);
+}
+
+.hero-section {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.hero-section-text {
+  color: #fde19b;
+  font-size: 40px;
+  text-align: center;
+  font-weight: bold;
+  max-width: 60%;
+  margin: 0 auto;
+  transition: 0.2s;
+}
+
+.hero-button {
+  margin: 0;
+  color: #fde19b;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 15px 50px;
+  border: none;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.hero-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.pantheon-selector {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pantheon-selector-title {
+  color: #fde19b;
+  font-size: 25px;
+}
+
+.pantheons-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  gap: 20px;
+  justify-content: center;
   width: 100%;
-  height: auto;
+  margin: 0 auto;
+}
+
+.pantheon-card {
+  background: linear-gradient(
+    to top,
+    rgba(168, 128, 119, 0.1) 0%,
+    rgba(193, 151, 141, 0.1) 100%
+  );
+  padding: 20px;
+  border-radius: 10px;
+  min-width: 200px;
+  min-height: 200px;
+  width: 200px;
+  height: 200px;
+  cursor: pointer;
+  transition: 0.15s;
+}
+
+.pantheon-card:hover {
+  backdrop-filter: brightness(1.2);
+}
+
+.pantheon-card-inner {
+  border: 1px solid #fde19b;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.pantheon-card-text {
+  color: #fde19b;
+  font-size: 20px;
+  text-align: center;
+}
+
+.god-selector {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.god-selector-title {
+  color: #fde19b;
+  font-size: 25px;
+}
+
+.god-selector-title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gods-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  gap: 20px;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto;
+  margin-bottom: 100px;
+}
+
+.god-card {
+  background: linear-gradient(
+    to top,
+    rgba(168, 128, 119, 0.1) 0%,
+    rgba(193, 151, 141, 0.1) 100%
+  );
+  border-radius: 10px;
+  min-width: 240px;
+  width: 240px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.god-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0px 0px 10px #fde19b3d;
+}
+
+.god-image {
+  width: 240px;
+  min-width: 240px;
+  max-width: 240px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.god-card-title-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0px;
+}
+
+.god-card-title {
+  color: #fde19b;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.god-card-description {
+  color: #fde19b;
+  margin: 0;
+  text-align: center;
 }
 
 .footer {
+  background: rgba(27, 22, 18, 0.8);
+  padding: 15px 0;
+  width: 100%;
+  border-top: 1px solid #fde19b;
   display: flex;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.3);
-  padding: 10px;
 }
 
-button {
+.footer-text {
+  margin: 0;
+  max-width: 60%;
   text-align: center;
-  background-color: #666;
-  border: none;
-  padding-left: 10px;
-  padding-right: 10px;
-  height: 40px;
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  animation: fadeIn 0.3s;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(67, 45, 38, 0.85);
+  padding: 20px;
+  border: 1px solid #fde19b;
   border-radius: 10px;
-  color: white;
-  font-size: 22px;
+  width: 80%;
+  max-width: 800px;
+  color: #fde19b;
+  opacity: 0;
+  animation: fadeSlideIn 0.3s forwards;
+}
+
+.close-modal {
+  color: #fde19b;
+  float: right;
+  font-size: 30px;
+  font-weight: bold;
   cursor: pointer;
-  margin: 5px;
+}
+
+.close-modal:hover {
+  color: #fff;
+}
+
+.modal-header {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #fde19b;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: row;
+}
+
+.modal-image-container {
+  flex: 0 0 300px;
+  margin-right: 20px;
+}
+
+#modal-god-image {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #fde19b;
+}
+
+.modal-details {
+  flex: 1;
+}
+
+.modal-details > p {
+  font-family: "Cinzel", serif;
+  font-size: 20px;
+}
+
+.modal-details > p > span {
+  font-family: "Raleway", sans-serif;
+  color: white;
+  font-size: 16px;
+  margin-left: 10px;
+}
+
+.modal-body .hero-button {
+  float: right;
+  margin-top: 10px;
+}
+
+.favorites-modal-content {
+  max-height: 90%;
+  display: flex;
+  flex-direction: column;
+}
+
+.favorites-modal-header {
+  justify-content: space-between;
+}
+
+.favorites-modal-title {
+  font-size: 24px;
+  color: #fde19b;
+}
+
+.favorites-modal-body {
+  flex: 1;
+  padding-top: 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.favorites-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.pantheon-builder-section {
+  margin: 50px 0 100px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fde19b;
+  border-top: 1px solid rgba(253, 225, 155, 0.3);
+  padding-top: 40px;
+}
+
+.pantheon-status {
+  margin-bottom: 20px;
+  font-family: "Raleway", sans-serif;
+  color: #fde19b;
+}
+
+.pantheon-name-container {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.pantheon-name-container .search-input {
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid #fde19b;
+  border-radius: 5px;
+}
+
+.pantheon-name-container .search-input::placeholder {
+  color: #fde19b8d;
+}
+
+.pantheon-selection-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  padding-right: 10px;
+}
+
+.god-checkbox-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.god-checkbox {
+  margin-right: 8px;
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid #fde19b;
+  border-radius: 3px;
+  position: relative;
+}
+
+.god-checkbox:checked {
+  background-color: rgba(253, 225, 155, 0.2);
+}
+
+.god-checkbox:checked::after {
+  content: "\f00c";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fde19b;
+  font-size: 12px;
+}
+
+.god-checkbox-label {
+  color: #fde19b;
+  cursor: pointer;
+  font-family: "Cinzel", serif;
+}
+
+.pantheon-display-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 30px;
+  max-width: 90%;
+}
+
+.pantheon-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sort-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.sort-button {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fde19b;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 15px;
+  cursor: pointer;
+  transition: 0.15s;
+  font-size: 14px;
+}
+
+.sort-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeSlideIn {
+  from {
+    transform: translate(-50%, -60%);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .pantheons-container {
+    grid-template-columns: auto auto;
+  }
+
+  .gods-container {
+    grid-template-columns: auto auto;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modal-body {
+    flex-direction: column;
+  }
+
+  .modal-image-container {
+    flex: none;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .pantheon-selection-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 730px) {
+  .header-title {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 670px) {
+  .header-title {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .pantheons-container {
+    grid-template-columns: auto;
+  }
+
+  .gods-container {
+    grid-template-columns: auto;
+  }
+
+  .pantheon-selector-title-container {
+    text-align: center;
+  }
+
+  .hero-section-text {
+    font-size: 30px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .pantheon-selection-container {
+    grid-template-columns: 1fr;
+  }
 }
